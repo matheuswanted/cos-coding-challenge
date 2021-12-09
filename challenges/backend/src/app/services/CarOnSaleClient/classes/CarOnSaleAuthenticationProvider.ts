@@ -5,7 +5,6 @@ import { ILogger } from "../../Logger/interface/ILogger";
 import { ICarOnsaleApiAuthenticationHeaders, ICarOnSaleApiConfig, ICarOnSaleAuthenticationProvider } from "../interface/ICarOnSaleClient";
 import "reflect-metadata";
 
-
 @injectable()
 export class CarOnSaleAuthenticationProvider implements ICarOnSaleAuthenticationProvider {
     private readonly httpClient: AxiosInstance;

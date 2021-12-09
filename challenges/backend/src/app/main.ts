@@ -1,12 +1,14 @@
+import axios, { AxiosInstance } from "axios";
 import { Container } from "inversify";
 import { ILogger } from "./services/Logger/interface/ILogger";
 import { Logger } from "./services/Logger/classes/Logger";
+import { ICarOnSaleAdapter } from "./services/CarOnSaleAdapter/interface/ICarOnsaleAdapter";
+import { CarOnSaleAdapter } from "./services/CarOnSaleAdapter/classes/CarOnsaleAdapter";
 import { ICarOnSaleApiConfig, ICarOnSaleAuthenticationProvider, ICarOnSaleClient } from "./services/CarOnSaleClient/interface/ICarOnSaleClient";
 import { CarOnSaleClient } from "./services/CarOnSaleClient/classes/CarOnSaleClient";
 import { CarOnSaleAuthenticationProvider } from "./services/CarOnSaleClient/classes/CarOnSaleAuthenticationProvider";
 import { DependencyIdentifier } from "./DependencyIdentifiers";
 import { AuctionMonitorApp } from "./AuctionMonitorApp";
-import axios, { AxiosInstance } from "axios";
 
 /*
  * Create the DI container.
@@ -34,6 +36,7 @@ container.bind<AxiosInstance>(DependencyIdentifier.HTTP_CLIENT_FACTORY).toFactor
     });
 });
 container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
+container.bind<ICarOnSaleAdapter>(DependencyIdentifier.CAR_ON_SALE_ADAPTER).to(CarOnSaleAdapter);
 container.bind<ICarOnSaleClient>(DependencyIdentifier.CAR_ON_SALE_CLIENT).to(CarOnSaleClient);
 container.bind<ICarOnSaleAuthenticationProvider>(DependencyIdentifier.CAR_ON_SALE_AUTH_PROVIDER).to(CarOnSaleAuthenticationProvider);
 
