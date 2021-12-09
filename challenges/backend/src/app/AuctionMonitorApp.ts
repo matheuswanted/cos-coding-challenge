@@ -11,7 +11,7 @@ import "reflect-metadata";
 export class AuctionMonitorApp {
 
     public constructor(
-        @inject(DependencyIdentifier.LOGGER) private viewPort: IViewPort,
+        @inject(DependencyIdentifier.VIEW_PORT) private viewPort: IViewPort,
         @inject(DependencyIdentifier.CAR_ON_SALE_CLIENT) private client: ICarOnSaleClient,
         @inject(DependencyIdentifier.CAR_ON_SALE_ADAPTER) private adapter: ICarOnSaleAdapter) {
     }
