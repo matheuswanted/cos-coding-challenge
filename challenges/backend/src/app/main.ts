@@ -1,12 +1,12 @@
-import { Container } from "inversify";
+import { Container, interfaces } from "inversify";
 import { ILogger } from "./services/Logger/interface/ILogger";
 import { Logger } from "./services/Logger/classes/Logger";
-import { ICarOnSaleApiConfig, IHttpClientFactory } from "./services/CarOnSaleClient/interface/IHttpFactory";
-import { ICarOnSaleClient } from "./services/CarOnSaleClient/interface/ICarOnSaleClient";
-import { HttpClientFactory } from "./services/CarOnSaleClient/classes/HttpClientFactory";
+import { ICarOnSaleApiConfig, ICarOnSaleAuthenticationProvider, ICarOnSaleClient } from "./services/CarOnSaleClient/interface/ICarOnSaleClient";
 import { CarOnSaleClient } from "./services/CarOnSaleClient/classes/CarOnSaleClient";
+import { CarOnSaleAuthenticationProvider } from "./services/CarOnSaleClient/classes/CarOnSaleAuthenticationProvider";
 import { DependencyIdentifier } from "./DependencyIdentifiers";
 import { AuctionMonitorApp } from "./AuctionMonitorApp";
+import axios, { AxiosInstance } from "axios";
 
 /*
  * Create the DI container.
@@ -14,7 +14,6 @@ import { AuctionMonitorApp } from "./AuctionMonitorApp";
 const container = new Container({
     defaultScope: "Singleton",
 });
-
 
 /*
  * Add Configurations.
@@ -28,10 +27,15 @@ container.bind<ICarOnSaleApiConfig>(DependencyIdentifier.CAR_ON_SALE_API_CONFIG)
 /*
  * Register dependencies in DI environment.
  */
+container.bind<AxiosInstance>(DependencyIdentifier.HTTP_CLIENT_FACTORY).toFactory(context => _ => {
+    const config = context.container.get<ICarOnSaleApiConfig>(DependencyIdentifier.CAR_ON_SALE_API_CONFIG);
+    return axios.create({
+        baseURL: config.url
+    });
+});
 container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
-container.bind<IHttpClientFactory>(DependencyIdentifier.HTTP_FACTORY).to(HttpClientFactory);
 container.bind<ICarOnSaleClient>(DependencyIdentifier.CAR_ON_SALE_CLIENT).to(CarOnSaleClient);
-
+container.bind<ICarOnSaleAuthenticationProvider>(DependencyIdentifier.CAR_ON_SALE_AUTH_PROVIDER).to(CarOnSaleAuthenticationProvider);
 
 /*
  * Inject all dependencies in the application & retrieve application instance.
