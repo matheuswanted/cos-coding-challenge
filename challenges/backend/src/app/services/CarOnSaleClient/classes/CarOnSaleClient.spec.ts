@@ -15,7 +15,7 @@ describe('CarOnsaleClient Tests', () => {
         underTest = new CarOnSaleClient(() => axiosInstance.object, authProvider.object);
     });
 
-    it("Should call /api/v2/auction/buyer", async () => {
+    it("Should call /api/v2/auction/buyer/", async () => {
         const authHeaders: ICarOnsaleApiAuthenticationHeaders = {
             authtoken: "token",
             userid: "123"
@@ -31,7 +31,7 @@ describe('CarOnsaleClient Tests', () => {
             .returns(() => Promise.resolve(authHeaders));
 
         axiosInstance
-            .setup(a => a.get(`/api/v2/auction/buyer`, { headers: { ...authHeaders } }))
+            .setup(a => a.get(`/api/v2/auction/buyer/`, { headers: { ...authHeaders } }))
             .returns(() => Promise.resolve({ data } as AxiosResponse));
 
         const response = await underTest.getRunningAuctions();

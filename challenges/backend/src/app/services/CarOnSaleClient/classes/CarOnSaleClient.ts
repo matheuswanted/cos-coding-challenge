@@ -15,9 +15,10 @@ export class CarOnSaleClient implements ICarOnSaleClient {
     }
 
     public async getRunningAuctions(): Promise<IPage<IAuctionResponse>> {
+        // TODO add error handling
         const auth = await this.authProvider.provideAuthentication();
 
-        const { data } = await this.httpClient.get("/api/v2/auction/buyer", { headers: { ...auth } });
+        const { data } = await this.httpClient.get("/api/v2/auction/buyer/", { headers: { ...auth } });
 
         return data as IPage<IAuctionResponse>;
     }
