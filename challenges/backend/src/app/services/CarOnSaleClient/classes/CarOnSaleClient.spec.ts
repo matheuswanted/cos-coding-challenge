@@ -9,7 +9,7 @@ describe('CarOnsaleClient Tests', () => {
     let authProvider: IMock<ICarOnSaleAuthenticationProvider>;
     let underTest: CarOnSaleClient;
 
-    before(() => {
+    beforeEach(() => {
         axiosInstance = Mock.ofType<AxiosInstance>();
         authProvider = Mock.ofType<ICarOnSaleAuthenticationProvider>();
         underTest = new CarOnSaleClient(() => axiosInstance.object, authProvider.object);

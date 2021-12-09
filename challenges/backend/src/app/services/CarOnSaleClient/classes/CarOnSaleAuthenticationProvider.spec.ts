@@ -11,7 +11,7 @@ describe('CarOnSaleAuthenticationProvider Tests', () => {
     let logger: IMock<ILogger>;
     let underTest: CarOnSaleAuthenticationProvider;
 
-    before(() => {
+    beforeEach(() => {
         axiosInstance = Mock.ofType<AxiosInstance>();
         config = Mock.ofType<ICarOnSaleApiConfig>();
         logger = Mock.ofType<ILogger>();
