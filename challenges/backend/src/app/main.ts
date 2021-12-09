@@ -7,6 +7,8 @@ import { CarOnSaleAdapter } from "./services/CarOnSaleAdapter/classes/CarOnsaleA
 import { ICarOnSaleApiConfig, ICarOnSaleAuthenticationProvider, ICarOnSaleClient } from "./services/CarOnSaleClient/interface/ICarOnSaleClient";
 import { CarOnSaleClient } from "./services/CarOnSaleClient/classes/CarOnSaleClient";
 import { CarOnSaleAuthenticationProvider } from "./services/CarOnSaleClient/classes/CarOnSaleAuthenticationProvider";
+import { IViewPort } from "./services/ViewPort/interface/IViewPort";
+import { ViewPort } from "./services/ViewPort/classes/ViewPort";
 import { DependencyIdentifier } from "./DependencyIdentifiers";
 import { AuctionMonitorApp } from "./AuctionMonitorApp";
 
@@ -36,6 +38,7 @@ container.bind<AxiosInstance>(DependencyIdentifier.HTTP_CLIENT_FACTORY).toFactor
     });
 });
 container.bind<ILogger>(DependencyIdentifier.LOGGER).to(Logger);
+container.bind<IViewPort>(DependencyIdentifier.VIEW_PORT).to(ViewPort);
 container.bind<ICarOnSaleAdapter>(DependencyIdentifier.CAR_ON_SALE_ADAPTER).to(CarOnSaleAdapter);
 container.bind<ICarOnSaleClient>(DependencyIdentifier.CAR_ON_SALE_CLIENT).to(CarOnSaleClient);
 container.bind<ICarOnSaleAuthenticationProvider>(DependencyIdentifier.CAR_ON_SALE_AUTH_PROVIDER).to(CarOnSaleAuthenticationProvider);

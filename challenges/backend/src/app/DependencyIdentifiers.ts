@@ -4,5 +4,6 @@ export const DependencyIdentifier = {
     CAR_ON_SALE_API_CONFIG: "carOnSaleApiConfig",
     CAR_ON_SALE_CLIENT: "carOnSaleClient",
     CAR_ON_SALE_ADAPTER: "carOnSaleAdapter",
-    CAR_ON_SALE_AUTH_PROVIDER: "carOnSaleAuthProvider"
+    CAR_ON_SALE_AUTH_PROVIDER: "carOnSaleAuthProvider",
+    VIEW_PORT: "viewPort"
 };
