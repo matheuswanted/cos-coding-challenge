@@ -18,6 +18,7 @@ describe('CarOnSaleAdapter Tests', () => {
             minimumRequiredAsk: 15,
         });
 
+        // tslint:disable-next-line: no-unused-expression
         expect(result).not.to.be.null;
         expect(result.id).to.be.eq("1");
         expect(result.label).to.be.eq("auction");

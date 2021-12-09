@@ -6,10 +6,12 @@ import "reflect-metadata";
 export class Logger implements ILogger {
 
     public log(message: string): void {
+        // tslint:disable-next-line: no-console
         console.log(`[LOG]: ${message}`);
     }
     public error(message: string): void {
-        throw new Error(`[ERROR]: ${message}`);
+        // tslint:disable-next-line: no-console
+        console.error(`[ERROR]: ${message}`);
     }
 
 }

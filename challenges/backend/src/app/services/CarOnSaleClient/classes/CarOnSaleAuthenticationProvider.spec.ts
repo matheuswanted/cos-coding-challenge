@@ -32,6 +32,7 @@ describe('CarOnSaleAuthenticationProvider Tests', () => {
             .returns(() => Promise.resolve({ data } as AxiosResponse));
 
         const response = await underTest.provideAuthentication();
+        // tslint:disable-next-line: no-unused-expression
         expect(response).not.to.be.null;
         expect(response.authtoken).to.be.eq("token");
         expect(response.userid).to.be.eq("1234");
