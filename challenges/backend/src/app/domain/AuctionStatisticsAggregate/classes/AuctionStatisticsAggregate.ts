@@ -1,16 +1,22 @@
 import { IAuction, IAuctionStatisticsAggregate } from "../interface/IAuctionStatisticsAggregate";
 
 export class AuctionStatisticsAggregate implements IAuctionStatisticsAggregate {
+    private numberOfBids: number = 0;
+    private numberOfAuctions: number = 0
+    private cumulativeProgress: number = 0
+
     public getAverageProgress(): number {
-        throw new Error("Method not implemented.");
+        return this.cumulativeProgress / this.numberOfAuctions;
     }
     public getNumberOfAuctions(): number {
-        throw new Error("Method not implemented.");
+        return this.numberOfAuctions;
     }
     public getAverageNumberOfBids(): number {
-        throw new Error("Method not implemented.");
+        return this.numberOfBids / this.numberOfAuctions;
     }
     public addAuction(auction: IAuction): void {
-        throw new Error("Method not implemented.");
+        this.numberOfAuctions++;
+        this.numberOfBids += auction.numberOfBids;
+        this.cumulativeProgress += auction.highestBid / (auction.minimunBidRequired || 1);
     }
 }
