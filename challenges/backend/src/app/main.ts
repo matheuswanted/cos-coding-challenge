@@ -22,11 +22,12 @@ const container = new Container({
 /*
  * Add Configurations.
  */
+// TODO move this config to external configurations. e.g.: Config file, EnvrionmentVariables, Config management :D
 container.bind<ICarOnSaleApiConfig>(DependencyIdentifier.CAR_ON_SALE_API_CONFIG).toConstantValue({
     url: "https://api-core-dev.caronsale.de",
     apiUser: "buyer-challenge@caronsale.de",
     password: "Test123."
-})
+});
 
 /*
  * Register dependencies in DI environment.
