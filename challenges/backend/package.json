@@ -12,6 +12,7 @@
   "dependencies": {
     "@types/inversify": "^2.0.33",
     "@types/node": "^14.14.21",
+    "axios": "^0.24.0",
     "chai": "^4.3.4",
     "inversify": "^4.13.0",
     "mocha": "^8.2.1",
