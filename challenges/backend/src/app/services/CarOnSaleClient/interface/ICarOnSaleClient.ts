@@ -23,9 +23,12 @@ export interface ICarOnsaleApiAuthenticationHeaders {
 export interface IAuctionResponse {
     id: string;
     label: string;
-    minimumRequiredAsk?: number;
     currentHighestBidValue: number;
     numBids: number;
+    /*
+    * I made this field nullable due to one record in the api being null even though swagger declares it as non-nullable
+    */
+    minimumRequiredAsk?: number;
 }
 
 export interface IPage<T> {
